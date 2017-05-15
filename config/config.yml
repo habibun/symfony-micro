@@ -1,0 +1,24 @@
+framework:
+    secret: %secret%
+    router:
+        resource: '%kernel.root_dir%/config/routing.yml'
+    templating:
+        engines: [twig]
+    profiler:
+        enabled: %kernel.debug%
+
+web_profiler:
+    toolbar: %kernel.debug%
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: %log_action_level%
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+
+
